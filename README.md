@@ -70,6 +70,12 @@ Depending on your selection, the script scaffolds the following architecture:
 │       ├── coder.mdc               # Cursor/Codex Coder rules
 │       ├── researcher.mdc          # Cursor/Codex Researcher rules
 │       └── tester.mdc              # Cursor/Codex Tester rules
+├── codex_prompts/
+│   ├── code.txt                    # Generic Codex coding prompt
+│   ├── research.txt                # Generic Codex architecture prompt
+│   └── tester.txt                  # Generic Codex testing prompt
+├── .github/
+│   └── copilot-instructions.md     # GitHub Copilot instructions
 ├── chatgpt_prompts/
 │   ├── code.txt                    # System prompt for ChatGPT coding
 │   ├── research.txt                # System prompt for ChatGPT architecture

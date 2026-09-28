@@ -135,18 +135,39 @@ def generate_antigravity():
     create_file("gemini_prompts/tester.txt", GEMINI_PROMPT_TESTER)
 
 def generate_chatgpt():
-    print("\nInitializing ChatGPT workflow...")
+    print("\nInitializing ChatGPT/Codex workflow...")
+    # ChatGPT Web Prompts
     create_file("chatgpt_instructions.md", CHATGPT_INSTRUCTIONS)
     create_file("chatgpt_prompts/research.txt", CHATGPT_PROMPT_RESEARCH)
     create_file("chatgpt_prompts/code.txt", CHATGPT_PROMPT_CODE)
     create_file("chatgpt_prompts/tester.txt", CHATGPT_PROMPT_TESTER)
+    
+    # Generic Codex CLI Prompts
+    create_file("codex_prompts/research.txt", CHATGPT_PROMPT_RESEARCH)
+    create_file("codex_prompts/code.txt", CHATGPT_PROMPT_CODE)
+    create_file("codex_prompts/tester.txt", CHATGPT_PROMPT_TESTER)
+    
+    # GitHub Copilot
+    create_file(".github/copilot-instructions.md", CHATGPT_INSTRUCTIONS)
+    
+    # Cursor CLI Modular Rules
+    create_file(".cursor/rules/researcher.mdc", f"---\ndescription: Use this rule when planning architecture or researching.\nglobs: *\n---\n{CHATGPT_PROMPT_RESEARCH}")
+    create_file(".cursor/rules/coder.mdc", f"---\ndescription: Use this rule when writing code.\nglobs: *\n---\n{CHATGPT_PROMPT_CODE}")
+    create_file(".cursor/rules/tester.mdc", f"---\ndescription: Use this rule when writing tests.\nglobs: *test*\n---\n{CHATGPT_PROMPT_TESTER}")
+    create_file(".cursorrules", CHATGPT_INSTRUCTIONS)
 
 def generate_claude():
     print("\nInitializing Claude workflow...")
+    # Claude Global & Web
     create_file(".claude.md", CLAUDE_MD)
     create_file("claude_prompts/research.txt", CLAUDE_PROMPT_RESEARCH)
     create_file("claude_prompts/code.txt", CLAUDE_PROMPT_CODE)
     create_file("claude_prompts/tester.txt", CLAUDE_PROMPT_TESTER)
+    
+    # Claude CLI Modular Agents
+    create_file(".claude/agents/researcher.md", f"# Researcher Agent\n{CLAUDE_PROMPT_RESEARCH}")
+    create_file(".claude/agents/coder.md", f"# Coder Agent\n{CLAUDE_PROMPT_CODE}")
+    create_file(".claude/agents/tester.md", f"# Tester Agent\n{CLAUDE_PROMPT_TESTER}")
 
 def update_gitignore(entries):
     print("\nUpdating .gitignore...")
@@ -184,7 +205,7 @@ def main():
     
     print("\nWhich AI provider would you like to initialize?")
     print("1) Antigravity / Gemini")
-    print("2) ChatGPT (OpenAI)")
+    print("2) ChatGPT / Codex (Cursor)")
     print("3) Claude (Anthropic)")
     print("4) All of the above")
     
@@ -199,18 +220,18 @@ def main():
         gitignore_entries.extend([".agents/", "GEMINI.md", "gemini_prompts/"])
     elif choice == "2":
         generate_chatgpt()
-        gitignore_entries.extend(["chatgpt_instructions.md", "chatgpt_prompts/"])
+        gitignore_entries.extend(["chatgpt_instructions.md", "chatgpt_prompts/", ".cursor/", ".cursorrules", "codex_prompts/", ".github/"])
     elif choice == "3":
         generate_claude()
-        gitignore_entries.extend([".claude.md", "claude_prompts/"])
+        gitignore_entries.extend([".claude.md", "claude_prompts/", ".claude/"])
     elif choice == "4":
         generate_antigravity()
         generate_chatgpt()
         generate_claude()
         gitignore_entries.extend([
             ".agents/", "GEMINI.md", "gemini_prompts/",
-            "chatgpt_instructions.md", "chatgpt_prompts/",
-            ".claude.md", "claude_prompts/"
+            "chatgpt_instructions.md", "chatgpt_prompts/", ".cursor/", ".cursorrules", "codex_prompts/", ".github/",
+            ".claude.md", "claude_prompts/", ".claude/"
         ])
     else:
         print("Invalid choice. Exiting.")
