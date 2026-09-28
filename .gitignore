@@ -5,3 +5,6 @@ chatgpt_instructions.md
 chatgpt_prompts/
 .claude.md
 claude_prompts/
+
+# AI Workflow Configurations
+gemini_prompts/
