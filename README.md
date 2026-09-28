@@ -60,10 +60,16 @@ Depending on your selection, the script scaffolds the following architecture:
 │       ├── coder/SKILL.md          # Antigravity Coder agent rules
 │       ├── researcher/SKILL.md     # Antigravity Researcher agent rules
 │       └── tester/SKILL.md         # Antigravity Tester agent rules
-├── gemini_prompts/
-│   ├── code.txt                    # System prompt for Gemini coding
-│   ├── research.txt                # System prompt for Gemini architecture
-│   └── tester.txt                  # System prompt for Gemini testing
+├── .claude/
+│   └── agents/
+│       ├── coder.md                # Claude CLI Coder agent rules
+│       ├── researcher.md           # Claude CLI Researcher agent rules
+│       └── tester.md               # Claude CLI Tester agent rules
+├── .cursor/
+│   └── rules/
+│       ├── coder.mdc               # Cursor/Codex Coder rules
+│       ├── researcher.mdc          # Cursor/Codex Researcher rules
+│       └── tester.mdc              # Cursor/Codex Tester rules
 ├── chatgpt_prompts/
 │   ├── code.txt                    # System prompt for ChatGPT coding
 │   ├── research.txt                # System prompt for ChatGPT architecture
@@ -72,7 +78,12 @@ Depending on your selection, the script scaffolds the following architecture:
 │   ├── code.txt                    # System prompt for Claude execution
 │   ├── research.txt                # System prompt for Claude planning
 │   └── tester.txt                  # System prompt for Claude testing
+├── gemini_prompts/
+│   ├── code.txt                    # System prompt for Gemini coding
+│   ├── research.txt                # System prompt for Gemini architecture
+│   └── tester.txt                  # System prompt for Gemini testing
 ├── .claude.md                      # Claude global context rules
+├── .cursorrules                    # Cursor global context rules
 ├── chatgpt_instructions.md         # ChatGPT Custom Instructions template
 ├── GEMINI.md                       # Antigravity strict coding guidelines
 └── init_ai.py                      # This script
