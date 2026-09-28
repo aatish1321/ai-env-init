@@ -1,4 +1,11 @@
-# 🤖 AI-ENV-INIT
+```text
+    _                             _       _ __ 
+   ____ _(_)     ___  ____ _   __      (_)___  (_) /_
+  / __ `/ /_____/ _ \/ __ \ | / /_____/ / __ \/ / __/
+ / /_/ / /_____/  __/ / / / |/ /_____/ / / / / / /_  
+ \__,_/_/      \___/_/ /_/|___/     /_/_/ /_/_/\__/  
+```
+
 
 > **A zero-dependency, cross-platform CLI tool to instantly bootstrap an AI-powered software engineering workspace.**
 
@@ -6,7 +13,7 @@
 ![Zero Dependencies](https://img.shields.io/badge/Dependencies-Zero-brightgreen.svg)
 ![Python](https://img.shields.io/badge/Python-3.x-blue.svg)
 
-## 📖 Overview
+##  Overview
 
 When starting a new project (or tackling a technical interview), developers often waste time manually configuring AI tools, re-typing system prompts, and establishing coding standards. 
 
