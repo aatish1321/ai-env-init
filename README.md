@@ -27,7 +27,7 @@ This project demonstrates a systematic approach to AI-assisted development: trea
 ## ⚡ Features
 
 * **Zero Dependencies**: Built entirely with Python's standard library. It runs instantly on any fresh Mac, Linux, or Windows machine without needing `pip install` or `npm install`.
-* **Multi-Provider Support**: Generates configurations for **Antigravity**, **ChatGPT (OpenAI)**, and **Claude (Anthropic)**.
+* **Auto-Gitignore**: Automatically adds generated configuration folders to your `.gitignore` to prevent polluting your project repository.\n* **Multi-Provider Support**: Generates configurations for **Antigravity**, **ChatGPT (OpenAI)**, and **Claude (Anthropic)**.
 * **Role-Based Prompts**: Scaffolds specialized prompts for different phases of the software development lifecycle (e.g., Architecture/Research, Coding/Execution).
 * **Quality Enforcement**: Generates rules files (`GEMINI.md`, `chatgpt_instructions.md`) that force the AI to write production-ready code with type hints and tests, eliminating "fluff" and lazy outputs.
 
