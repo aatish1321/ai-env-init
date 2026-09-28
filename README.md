@@ -58,13 +58,20 @@ Depending on your selection, the script scaffolds the following architecture:
 ├── .agents/
 │   └── skills/
 │       ├── coder/SKILL.md          # Antigravity Coder agent rules
-│       └── researcher/SKILL.md     # Antigravity Researcher agent rules
+│       ├── researcher/SKILL.md     # Antigravity Researcher agent rules
+│       └── tester/SKILL.md         # Antigravity Tester agent rules
+├── gemini_prompts/
+│   ├── code.txt                    # System prompt for Gemini coding
+│   ├── research.txt                # System prompt for Gemini architecture
+│   └── tester.txt                  # System prompt for Gemini testing
 ├── chatgpt_prompts/
 │   ├── code.txt                    # System prompt for ChatGPT coding
-│   └── research.txt                # System prompt for ChatGPT architecture
+│   ├── research.txt                # System prompt for ChatGPT architecture
+│   └── tester.txt                  # System prompt for ChatGPT testing
 ├── claude_prompts/
 │   ├── code.txt                    # System prompt for Claude execution
-│   └── research.txt                # System prompt for Claude planning
+│   ├── research.txt                # System prompt for Claude planning
+│   └── tester.txt                  # System prompt for Claude testing
 ├── .claude.md                      # Claude global context rules
 ├── chatgpt_instructions.md         # ChatGPT Custom Instructions template
 ├── GEMINI.md                       # Antigravity strict coding guidelines

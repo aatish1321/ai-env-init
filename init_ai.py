@@ -11,7 +11,7 @@ def create_file(path, content):
     print(f"Created: {path}")
 
 # ==============================================================================
-# TEMPLATES - ANTIGRAVITY
+# TEMPLATES - ANTIGRAVITY & GEMINI
 # ==============================================================================
 AGY_GEMINI_MD = """
 # Project Rules
@@ -44,6 +44,28 @@ You are an expert software engineer. Implement the required features efficiently
 Adhere strictly to the guidelines in GEMINI.md.
 """
 
+AGY_SKILL_TESTER = """
+---
+name: tester
+description: Expert QA engineer agent for writing and running tests.
+---
+# Tester Skill
+You are an expert QA engineer. Write comprehensive unit and integration tests for the provided code.
+Ensure high coverage and test for edge cases.
+"""
+
+GEMINI_PROMPT_RESEARCH = """
+You are an expert technical researcher using Google Gemini. Analyze the provided context deeply. Focus on edge cases, system dependencies, and theoretical limitations. Summarize your findings in a structured markdown report.
+"""
+
+GEMINI_PROMPT_CODE = """
+You are a senior developer using Google Gemini. Write code that is idiomatic, clean, and highly performant. Do not skip any necessary imports or boilerplate.
+"""
+
+GEMINI_PROMPT_TESTER = """
+You are an expert QA engineer using Google Gemini. Write comprehensive unit and integration tests. Focus on breaking the code and covering edge cases.
+"""
+
 # ==============================================================================
 # TEMPLATES - CHATGPT
 # ==============================================================================
@@ -70,6 +92,11 @@ Act as an Expert Software Developer. Write robust, production-ready code for the
 Ensure you include error handling, comments explaining complex logic, and adhere to modern best practices.
 """
 
+CHATGPT_PROMPT_TESTER = """
+Act as an Expert QA Engineer. Write robust, comprehensive unit tests for the following code.
+Focus on edge cases, mocking external dependencies, and ensuring high test coverage.
+"""
+
 # ==============================================================================
 # TEMPLATES - CLAUDE
 # ==============================================================================
@@ -91,23 +118,35 @@ CLAUDE_PROMPT_CODE = """
 You are a senior developer. Write code that is idiomatic, clean, and highly performant. Do not skip any necessary imports or boilerplate.
 """
 
+CLAUDE_PROMPT_TESTER = """
+You are a senior QA engineer. Write thorough unit and integration tests. Ensure all edge cases and failure modes are explicitly tested.
+"""
+
 def generate_antigravity():
-    print("\nInitializing Antigravity workflow...")
+    print("\nInitializing Antigravity/Gemini workflow...")
     create_file("GEMINI.md", AGY_GEMINI_MD)
     create_file(".agents/skills/researcher/SKILL.md", AGY_SKILL_RESEARCH)
     create_file(".agents/skills/coder/SKILL.md", AGY_SKILL_CODER)
+    create_file(".agents/skills/tester/SKILL.md", AGY_SKILL_TESTER)
+    
+    # Gemini Web Prompts
+    create_file("gemini_prompts/research.txt", GEMINI_PROMPT_RESEARCH)
+    create_file("gemini_prompts/code.txt", GEMINI_PROMPT_CODE)
+    create_file("gemini_prompts/tester.txt", GEMINI_PROMPT_TESTER)
 
 def generate_chatgpt():
     print("\nInitializing ChatGPT workflow...")
     create_file("chatgpt_instructions.md", CHATGPT_INSTRUCTIONS)
     create_file("chatgpt_prompts/research.txt", CHATGPT_PROMPT_RESEARCH)
     create_file("chatgpt_prompts/code.txt", CHATGPT_PROMPT_CODE)
+    create_file("chatgpt_prompts/tester.txt", CHATGPT_PROMPT_TESTER)
 
 def generate_claude():
     print("\nInitializing Claude workflow...")
     create_file(".claude.md", CLAUDE_MD)
     create_file("claude_prompts/research.txt", CLAUDE_PROMPT_RESEARCH)
     create_file("claude_prompts/code.txt", CLAUDE_PROMPT_CODE)
+    create_file("claude_prompts/tester.txt", CLAUDE_PROMPT_TESTER)
 
 def update_gitignore(entries):
     print("\nUpdating .gitignore...")
@@ -144,7 +183,7 @@ def main():
     print("Set up a brand new laptop for AI pairing!")
     
     print("\nWhich AI provider would you like to initialize?")
-    print("1) Antigravity")
+    print("1) Antigravity / Gemini")
     print("2) ChatGPT (OpenAI)")
     print("3) Claude (Anthropic)")
     print("4) All of the above")
@@ -157,7 +196,7 @@ def main():
         
     if choice == "1":
         generate_antigravity()
-        gitignore_entries.extend([".agents/", "GEMINI.md"])
+        gitignore_entries.extend([".agents/", "GEMINI.md", "gemini_prompts/"])
     elif choice == "2":
         generate_chatgpt()
         gitignore_entries.extend(["chatgpt_instructions.md", "chatgpt_prompts/"])
@@ -169,7 +208,7 @@ def main():
         generate_chatgpt()
         generate_claude()
         gitignore_entries.extend([
-            ".agents/", "GEMINI.md", 
+            ".agents/", "GEMINI.md", "gemini_prompts/",
             "chatgpt_instructions.md", "chatgpt_prompts/",
             ".claude.md", "claude_prompts/"
         ])
