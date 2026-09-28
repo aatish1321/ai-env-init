@@ -109,6 +109,28 @@ def generate_claude():
     create_file("claude_prompts/research.txt", CLAUDE_PROMPT_RESEARCH)
     create_file("claude_prompts/code.txt", CLAUDE_PROMPT_CODE)
 
+def update_gitignore(entries):
+    print("\nUpdating .gitignore...")
+    gitignore_path = ".gitignore"
+    existing_lines = []
+    
+    if os.path.exists(gitignore_path):
+        with open(gitignore_path, "r", encoding="utf-8") as f:
+            existing_lines = [line.strip() for line in f.readlines()]
+            
+    with open(gitignore_path, "a", encoding="utf-8") as f:
+        # Add a header if we are appending to an existing file or creating a new one
+        if existing_lines and existing_lines[-1] != "":
+            f.write("\n")
+        
+        f.write("# AI Workflow Configurations\n")
+        for entry in entries:
+            if entry not in existing_lines:
+                f.write(f"{entry}\n")
+                print(f"Added to .gitignore: {entry}")
+            else:
+                print(f"Already in .gitignore: {entry}")
+
 def main():
     ASCII_ART = r"""
                         
@@ -131,19 +153,32 @@ def main():
     if not choice:
         choice = "4"
         
+    gitignore_entries = []
+        
     if choice == "1":
         generate_antigravity()
+        gitignore_entries.extend([".agents/", "GEMINI.md"])
     elif choice == "2":
         generate_chatgpt()
+        gitignore_entries.extend(["chatgpt_instructions.md", "chatgpt_prompts/"])
     elif choice == "3":
         generate_claude()
+        gitignore_entries.extend([".claude.md", "claude_prompts/"])
     elif choice == "4":
         generate_antigravity()
         generate_chatgpt()
         generate_claude()
+        gitignore_entries.extend([
+            ".agents/", "GEMINI.md", 
+            "chatgpt_instructions.md", "chatgpt_prompts/",
+            ".claude.md", "claude_prompts/"
+        ])
     else:
         print("Invalid choice. Exiting.")
         sys.exit(1)
+        
+    if gitignore_entries:
+        update_gitignore(gitignore_entries)
         
     print("\n✨ Initialization complete! You are ready to start coding with your AI team.")
 

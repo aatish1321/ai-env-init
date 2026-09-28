@@ -1,0 +1,7 @@
+# AI Workflow Configurations
+.agents/
+GEMINI.md
+chatgpt_instructions.md
+chatgpt_prompts/
+.claude.md
+claude_prompts/
